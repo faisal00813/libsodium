@@ -41,11 +41,10 @@ echo
 
 env - PATH="$PATH" \
     "$MAKE_TOOLCHAIN" --force --api="$NDK_API_VERSION_COMPAT" \
-    --unified-headers --arch="$ARCH" --install-dir="$TOOLCHAIN_DIR" || exit 1
+    --arch="$ARCH" --install-dir="$TOOLCHAIN_DIR" || exit 1
 
 ./configure \
     --disable-soname-versions \
-    --enable-minimal \
     --host="${HOST_COMPILER}" \
     --prefix="${PREFIX}" \
     --with-sysroot="${TOOLCHAIN_DIR}/sysroot" || exit 1
@@ -57,11 +56,10 @@ if [ "$NDK_PLATFORM" != "$NDK_PLATFORM_COMPAT" ]; then
   echo
   env - PATH="$PATH" \
       "$MAKE_TOOLCHAIN" --force --api="$NDK_API_VERSION" \
-      --unified-headers --arch="$ARCH" --install-dir="$TOOLCHAIN_DIR" || exit 1
+      --arch="$ARCH" --install-dir="$TOOLCHAIN_DIR" || exit 1
 
   ./configure \
       --disable-soname-versions \
-      --enable-minimal \
       --host="${HOST_COMPILER}" \
       --prefix="${PREFIX}" \
       --with-sysroot="${TOOLCHAIN_DIR}/sysroot" || exit 1
